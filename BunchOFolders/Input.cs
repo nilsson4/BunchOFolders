@@ -11,12 +11,12 @@ namespace BunchOFolders
         public static void TakeInput()
         {
             ConsoleKeyInfo key = Console.ReadKey();
-            if(key.Key == ConsoleKey.LeftArrow)
+            if (key.Key == ConsoleKey.LeftArrow || key.Key == ConsoleKey.Backspace)
             {
                 FolderNavigation.Move(MoveDirection.Up);
                 Console.SetCursorPosition(0, 0);
             }
-            if (key.Key == ConsoleKey.RightArrow)
+            if (key.Key == ConsoleKey.RightArrow || key.Key == ConsoleKey.Enter)
             {
                 FolderNavigation.Move(MoveDirection.Down);
                 Console.SetCursorPosition(0, 0);

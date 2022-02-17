@@ -36,15 +36,29 @@ namespace BunchOFolders
                 return;
 
             }  
-            else if (direction == MoveDirection.Left && SelectedIndex != 0)
+            else if (direction == MoveDirection.Left)
             {
-                SelectedIndex--;
+                if (SelectedIndex == 0)
+                {
+                    SelectedIndex = Children.Length -1;
+                }
+                else
+                {
+                    SelectedIndex--;
+                }
                 WriteFolders();
                 return;
             }  
-            else if (direction == MoveDirection.Right && SelectedIndex != Children.Length-1)
+            else if (direction == MoveDirection.Right)
             {
-                SelectedIndex++;
+                if (SelectedIndex == Children.Length-1)
+                {
+                    SelectedIndex = 0;
+                }
+                else
+                {
+                    SelectedIndex++;
+                }
                 WriteFolders();
                 return;
             }
@@ -59,6 +73,9 @@ namespace BunchOFolders
         {
             Console.Clear();
             GetChildren();
+
+            Console.WriteLine($"(PATH) {CurrentPath}\n");
+
             for (int i = 0; i < Children.Length; i++)
             {
                 if(i == SelectedIndex)
@@ -66,7 +83,7 @@ namespace BunchOFolders
                     Console.ForegroundColor = ConsoleColor.Black;
                     Console.BackgroundColor = ConsoleColor.White;
                 }
-                Console.WriteLine(Children[i]);
+                Console.WriteLine(Children[i].Substring(Children[i].LastIndexOf("\\")));
                 if (i == SelectedIndex)
                 {
                     Console.ForegroundColor = ConsoleColor.White;
